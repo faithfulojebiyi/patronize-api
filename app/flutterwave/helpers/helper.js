@@ -1,4 +1,5 @@
 import forge from 'node-forge'
+import config from '../../../config'
 
 /**
  * contains Helper Methods for flutterwave
@@ -8,14 +9,14 @@ class FlutterWaveHelper {
   /**
    * It encrypts a data
    * @static
-   * @param {string} key - The encryption key used for encryption
    * @param {string} text - The stringified format of the data to encrypt
    * @returns {string} - The encrypted data
    * @memberof FlutterWaveHelper
    */
-  static encrypt (key, text) {
+  static encrypt (text) {
+    const key = config.FLUTTER_WAVE_ENCRYPTION_KEY
     const cipher = forge.cipher.createCipher(
-      '3DES-CBC',
+      '3DES-ECB',
       forge.util.createBuffer(key)
     )
     cipher.start({
