@@ -26,6 +26,16 @@ class Helper {
   }
 
   /**
+   * It generates a unique ref_
+   * @static
+   * @memberof Helper
+   * @returns {String} - A unique string.
+   */
+  static generateTransactionRef () {
+    return Date.now().toString()
+  }
+
+  /**
    * This is used for generating a hash and a salt from a user's password.
    * @static
    * @param {string} password - password to be encrypted.
@@ -63,6 +73,35 @@ class Helper {
   }
 
   /**
+   * It checks if an array is not empty
+   * @static
+   * @param {Arry} array - the array to be checked
+   * @returns { boolean } - True if validation succeeded, false otherwise
+   */
+  static checkArrayIsNotEmpty (array) {
+    if (array.length === 0) {
+      return null
+    }
+    if (array.length === 1) {
+      return array[0]
+    }
+    return array
+  }
+
+  /**
+   * It checks an empty array
+   * @static
+   * @param {Arry} array - the array to be checked
+   * @returns { boolean } - True if validation succeeded, false otherwise
+   */
+  static checkArrayIsEmpty (array) {
+    if (array.length === 0) {
+      return true
+    }
+    return false
+  }
+
+  /**
    * Create a signed json web token
    * @param {string | number | Buffer | object} payload - Payload to sign
    * @param {string | number} expiresIn - Expressed in seconds or a string describing a
@@ -70,7 +109,7 @@ class Helper {
    * @memberof Helper
    * @returns {string} -JWT token
    */
-  static generateToken (payload, expiresIn = '2h') {
+  static generateToken (payload, expiresIn = '2d') {
     return jwt.sign(payload, SECRET, { expiresIn })
   }
 

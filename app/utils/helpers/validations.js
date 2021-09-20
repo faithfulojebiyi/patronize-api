@@ -197,6 +197,48 @@ class ValidationHelper {
         'any.required': `${param} cannot be an empty field`
       })
   }
+
+  /**
+   * It validates a card number with minimum and maximum value
+   * @static
+   * @param {string} param - The field name
+   * @param {object} joiObject - joi object used
+   * @memberof FlutterWaveValidationHelper
+   * @returns {Boolean} - True or False
+   */
+  static cardNumberCheck (param, joiObject) {
+    return joiObject
+      .string()
+      .required()
+      .creditCard()
+      .messages({
+        'any.required': `${param} is a required field`,
+        'string.base': `${param} must be a string`,
+        'string.empty': `${param} cannot be an empty field`,
+        'string.creditCard': `${param} must be a valid card number`
+      })
+  }
+
+  /**
+   * It validates a number with minimum and maximum value
+   * @static
+   * @param {string} param - The field name
+   * @param {object} joiObject - joi object used
+   * @param {integer} min - The minimum value required
+   * @param {integer} max - The maximum value required
+   * @memberof FlutterWaveValidationHelper
+   * @returns {Boolean} - True or False
+   */
+  static amountCheck (param, joiObject) {
+    return joiObject
+      .number()
+      .required()
+      .messages({
+        'any.required': `${param} is a required field`,
+        'number.base': `${param} must be a number`,
+        'number.empty': `${param} cannot be an empty field`
+      })
+  }
 }
 
 export default ValidationHelper
