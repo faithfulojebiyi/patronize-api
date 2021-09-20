@@ -1,17 +1,21 @@
 import { expect } from 'chai'
 import { Helper } from '../../app/utils'
 import { userPassword } from '../fixtures/user'
-import { payload, tokenData, userSchema, userData } from '../fixtures/helper'
+import { payload, tokenData, userSchema, userData, singleArray, multiArray } from '../fixtures/helper'
 
 const {
   generateId,
+  generateTransactionRef,
   hashPassword,
   compareHash,
   generateToken,
   addTokenToData,
   verifyToken,
-  validateInput
+  validateInput,
+  checkArrayIsNotEmpty
 } = Helper
+
+const empty = []
 
 describe('Utility Helper Functions', () => {
   let hashedPassword
@@ -20,6 +24,10 @@ describe('Utility Helper Functions', () => {
   it('generateId should generate a uuid', () => {
     const id = generateId()
     expect(id).to.be.a('string').of.length(36)
+  })
+  it('generateTransactionRef should generate a uuid', () => {
+    const ref = generateTransactionRef()
+    expect(ref).to.be.a('string')
   })
   it('hashPassword should hash a plain password', () => {
     hashedPassword = hashPassword(userPassword)
@@ -50,5 +58,13 @@ describe('Utility Helper Functions', () => {
     } catch (error) {
       expect(error).to.be.equal(null)
     }
+  })
+  it('checkArrayIsNotEmpty should check if an array is empty', () => {
+    const data = checkArrayIsNotEmpty(empty)
+    const single = checkArrayIsNotEmpty(singleArray)
+    const array = checkArrayIsNotEmpty(multiArray)
+    expect(data).to.be.a('null')
+    expect(single).to.be.an('object')
+    expect(array).to.be.an('array')
   })
 })

@@ -27,3 +27,27 @@ export const userData = {
   email: faker.internet.email(),
   password: 'userPassword'
 }
+
+export const singleArray = [
+  {
+    first_name: faker.name.firstName(),
+    last_name: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: 'userPassword'
+  }
+]
+
+export const multiArray = [
+  {
+    first_name: faker.name.firstName(),
+    last_name: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: 'userPassword'
+  },
+  {
+    first_name: faker.name.firstName(),
+    last_name: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: 'userPassword'
+  }
+]
