@@ -2,8 +2,13 @@ import cors from 'cors'
 import { json, urlencoded } from 'express'
 import helmet from 'helmet'
 import config from './env'
+import apiV1Routes from '../app/routes/v1'
+import { Helper, genericErrors, constants } from '../app/utils'
 const morgan = require('morgan')
 
+const { errorResponse, successResponse } = Helper
+const { notFoundApi } = genericErrors
+const { WELCOME, v1 } = constants
 const appConfig = async (app) => {
   // integrate winston logger with morgan
   app.use(morgan('combined', { stream: logger.stream }))
@@ -16,7 +21,15 @@ const appConfig = async (app) => {
   // adds middleware that parses requests with x-www-form-urlencoded data encoding
   app.use(urlencoded({ extended: true }))
   // adds a heartbeat route for the culture
-  app.get('/', (req, res) => res.send('success'))
+  app.get('/', (req, res) => successResponse(res, { message: WELCOME }))
+  // serves v1 api routes
+  app.use(v1, apiV1Routes)
+  // catches 404 errors and forwards them to error handlers
+  app.use((req, res, next) => {
+    next(notFoundApi)
+  })
+  // handles all forwarded errors
+  app.use((err, req, res, next) => errorResponse(req, res, err))
   // initialize the port constant
   const port = config.PORT || 3000
   // server listens for connections
