@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon -r esm app",
-    "test": "cross-env PATRONIZE_NODE_ENV=test mocha -c -r esm test/**/*.test.js --timeout 12000 --exit"
+    "test": "cross-env PATRONIZE_NODE_ENV=test mocha -c -r esm test/**/*.test.js --timeout 12000 --exit",
+    "migrate": "db-migrate --migrations-dir ./app/db/migrations",
+    "migrate:up": "npm run migrate up"
   },
   "author": "Faithful Ojebiyi",
   "license": "MIT",
@@ -19,6 +21,8 @@
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
+    "db-migrate": "^0.11.12",
+    "db-migrate-mysql": "^2.1.2",
     "dotenv": "^10.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
@@ -27,7 +31,9 @@
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "mysql2": "^2.3.0",
     "node-forge": "^0.10.0",
+    "serve-favicon": "^2.5.0",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },

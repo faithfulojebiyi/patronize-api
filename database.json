@@ -1,0 +1,29 @@
+{
+  "defaultEnv": {
+    "ENV": "PATRONIZE_NODE_ENV"
+  },
+  "development": {
+    "host": "localhost",
+    "user": { "ENV" : "DB_DEV_USER" },
+    "password" : { "ENV" : "DB_DEV_PASS" },
+    "database": { "ENV" : "DB_DEV_NAME" },
+    "driver": "mysql",
+    "multipleStatements": true
+  },
+  "test": {
+    "host": "localhost",
+    "user": { "ENV" : "DB_TEST_USER" },
+    "password" : { "ENV" : "DB_TEST_PASS" },
+    "database": { "ENV" : "DB_TEST_NAME" },
+    "driver": "mysql",
+    "multipleStatements": true
+  },
+  "production": {
+    "host": "localhost",
+    "user": { "ENV" : "DB_USER" },
+    "password" : { "ENV" : "DB_PASS" },
+    "database": { "ENV" : "DB_NAME" },
+    "driver": "mysql",
+    "multipleStatements": true
+  }
+}
