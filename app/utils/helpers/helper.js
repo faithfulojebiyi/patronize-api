@@ -36,6 +36,41 @@ class Helper {
   }
 
   /**
+   * It parses a data
+   * @static
+   * @param {string} data - The data to be parsed
+   * @memberof Helper
+   * @returns {any} - The parsed data.
+   */
+  static parseData (data) {
+    return JSON.parse(data)
+  }
+
+  /**
+   * It generates a unique success ref
+   * @static
+   * @memberof Helper
+   * @returns {String} - A unique ref no
+   */
+  static generateSuccessMockRef () {
+    const r = Helper.generateTransactionRef()
+    const ref = r + '_PMCKDU_1'
+    return ref
+  }
+
+  /**
+   * It generates a unique success ref
+   * @static
+   * @memberof Helper
+   * @returns {String} - A unique ref no
+   */
+  static generateFailureMockRef () {
+    const r = Helper.generateTransactionRef()
+    const ref = r + '_PMCK_ST_FDU_1'
+    return ref
+  }
+
+  /**
    * This is used for generating a hash and a salt from a user's password.
    * @static
    * @param {string} password - password to be encrypted.
