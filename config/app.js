@@ -1,9 +1,11 @@
 import cors from 'cors'
+import path from 'path'
 import { json, urlencoded } from 'express'
 import helmet from 'helmet'
 import config from './env'
 import apiV1Routes from '../app/routes/v1'
 import { Helper, genericErrors, constants } from '../app/utils'
+import favicon from 'serve-favicon'
 const morgan = require('morgan')
 
 const { errorResponse, successResponse } = Helper
@@ -20,6 +22,8 @@ const appConfig = async (app) => {
   app.use(json())
   // adds middleware that parses requests with x-www-form-urlencoded data encoding
   app.use(urlencoded({ extended: true }))
+  // serves favicon
+  app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
   // adds a heartbeat route for the culture
   app.get('/', (req, res) => successResponse(res, { message: WELCOME }))
   // serves v1 api routes

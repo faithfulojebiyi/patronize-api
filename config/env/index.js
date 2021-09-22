@@ -5,7 +5,8 @@ import production from './production'
 
 const {
   PATRONIZE_SECRET: SECRET,
-  PATRONIZE_NODE_ENV: NODE_ENV
+  PATRONIZE_NODE_ENV: NODE_ENV,
+  PATRONIZE_HASH: MY_HASH
 } = process.env
 
 const currentEnv = {
@@ -19,5 +20,6 @@ export default {
   ...currentEnv,
   rootPath,
   SECRET,
-  NODE_ENV
+  NODE_ENV,
+  MY_HASH
 }
